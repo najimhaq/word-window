@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Janala</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Sora:wght@400;500;600&family=Hind+Siliguri:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
+    <nav class="navbar-custom">
+      <div class="logo">Word<i class="ri-windows-line text-gray-500"></i><span>Window</span></div>
+      <button class="theme-btn" id="theme-toggle" title="Toggle theme">
+        🌙
+      </button>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero-section">
+      <h1 class="hero-title"><span class="accent">English</span> is Easy</h1>
+      <p class="hero-sub">শব্দ শিখুন, ভাষা জয় করুন — one lesson at a time</p>
+    </section>
+
+    <!-- ═══════════════ SEARCH ═══════════════ -->
+    <div class="search-section">
+      <div class="search-wrap">
+        <i class="ri-search-line search-icon"></i>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search vocabulary... (যেকোনো শব্দ লিখুন)"
+          autocomplete="off"
+        />
+        <i class="ri-close-circle-line search-clear" id="clear-search"></i>
+      </div>
+    </div>
+
+    <!-- ═══════════════ LESSONS + WORDS ═══════════════ -->
+    <section class="lessons-section">
+      <h2 class="section-title">
+        <span class="accent">Let's</span> Learn Vocabularies
+      </h2>
+
+      <!-- Lesson buttons -->
+      <div id="level-container"></div>
+
+      <!-- Stats bar -->
+      <div class="stats-bar" id="stats-bar" style="display: none">
+        <span>Showing <strong id="word-count">0</strong> words</span>
+        <span
+          id="active-label"
+          style="color: var(--brand); font-weight: 600; font-size: 0.78rem"
+        ></span>
+      </div>
+
+      <!-- Spinner -->
+      <div id="loading" class="hidden">
+        <div class="spinner-ring"></div>
+      </div>
+
+      <!-- Word cards -->
+      <div id="word-container">
+        <div class="empty-state">
+          <i class="ri-book-open-line"></i>
+          <h3>Select a Lesson to Begin</h3>
+          <p>Choose any lesson above to load vocabulary words</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MODAL ═══════════════ -->
+    <div class="modal-overlay" id="word-modal">
+      <div class="modal-box">
+        <button class="modal-close" id="modal-close">
+          <i class="ri-close-line"></i>
+        </button>
+        <div id="details-container"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FAQ ═══════════════ -->
+    <section class="faq-section">
+      <h2 class="faq-title">
+        <span class="accent">Frequently</span> Asked Questions
+      </h2>
+      <p class="faq-subtitle">
+        সাধারণ প্রশ্ন ও উত্তর — everything you need to know
+      </p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text"
+              >Word Window কী এবং এটি কীভাবে কাজ করে?</span
+            >
+            <div class="faq-icon"><i class="ri-add-line"></i></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Word Window হল একটি বাংলা-বান্ধব English vocabulary শেখার
+              প্ল্যাটফর্ম। প্রতিটি Lesson-এ শব্দ, অর্থ, উচ্চারণ এবং synonyms
+              দেওয়া আছে। Lesson বাটনে ক্লিক করুন, শব্দ লোড হবে এবং Details
+              বাটনে ক্লিক করে বিস্তারিত দেখুন।
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text"
+              >আমি কি বাংলায় শব্দ অনুসন্ধান করতে পারি?</span
+            >
+            <div class="faq-icon"><i class="ri-add-line"></i></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              বর্তমানে Search বার দিয়ে ইংরেজি শব্দ অনুসন্ধান করা যায়। একটি
+              Lesson সিলেক্ট করার পরে সার্চ বারে টাইপ করুন এবং রিয়েল-টাইমে
+              ফলাফল দেখুন।
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Speak বাটন কীভাবে কাজ করে?</span>
+            <div class="faq-icon"><i class="ri-add-line"></i></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              প্রতিটি word card-এর "Speak" বাটনে ক্লিক করলে browser-এর built-in
+              Web Speech API ব্যবহার করে সঠিক আমেরিকান English উচ্চারণে শব্দটি
+              বলা হয়। এটি কাজ করার জন্য আপনার browser-এ Speech Synthesis
+              সাপোর্ট থাকতে হবে।
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Dark Mode কীভাবে চালু করব?</span>
+            <div class="faq-icon"><i class="ri-add-line"></i></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              উপরের Navbar-এ 🌙 আইকন বাটনে ক্লিক করলে Dark Mode চালু হবে এবং ☀️
+              বাটনে ক্লিক করলে আবার Light Mode-এ ফিরে আসবে।
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text"
+              >কতগুলো Lesson আছে এবং নতুন শব্দ কি যোগ হয়?</span
+            >
+            <div class="faq-icon"><i class="ri-add-line"></i></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Lessons এবং vocabulary data Programming Hero-এর public API থেকে
+              লোড হয়। Lesson সংখ্যা API আপডেটের উপর নির্ভর করে। প্রতিটি
+              Lesson-এ বিভিন্ন স্তরের শব্দ রয়েছে যা আপনার vocabulary বাড়াতে
+              সাহায্য করবে।
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <!-- Brand col -->
+        <div>
+          <div class="footer-brand-name">Word <span>Window</span></div>
+          <p class="footer-desc">
+            শব্দ শিখুন, ভাষা জয় করুন। A beautiful platform to build your
+            English vocabulary — one lesson at a time, designed for Bangla
+            speakers.
+          </p>
+          <div class="footer-social">
+            <a class="social-btn" href="#" title="Facebook"
+              ><i class="ri-facebook-fill"></i
+            ></a>
+            <a class="social-btn" href="#" title="Twitter/X"
+              ><i class="ri-twitter-x-fill"></i
+            ></a>
+            <a class="social-btn" href="#" title="YouTube"
+              ><i class="ri-youtube-fill"></i
+            ></a>
+            <a class="social-btn" href="#" title="GitHub"
+              ><i class="ri-github-fill"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">📚 Lessons</a></li>
+            <li><a href="#">🔍 Search Words</a></li>
+            <li><a href="#">❓ FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <div class="footer-col-title">Resources</div>
+          <ul class="footer-links">
+            <li><a href="#">📖 Vocabulary Guide</a></li>
+            <li><a href="#">🎧 Pronunciation Tips</a></li>
+            <li><a href="#">✉️ Contact Us</a></li>
+            <li><a href="#">🔒 Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <span>Word Window</span>. All rights reserved.</p>
+        <p>Made with <span>♥</span> for Bangla learners</p>
+      </div>
+    </footer>
+    <script src="script/script.js"></script>
+  </body>
+</html>
