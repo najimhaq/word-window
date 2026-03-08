@@ -25,7 +25,7 @@ No installation required. This is a zero-dependency, single-file app.
 **1. Clone or download the file**
 
 ```bash
-git clone https://github.com/your-username/word-window.git
+git clone https://github.com/najimhaq/word-window
 ```
 
 **2. Open in your browser**
@@ -126,8 +126,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Your Name**
 
-- GitHub: [@your-username](https://github.com/your-username)
-- Email: your@email.com
+- GitHub: [@najimhaq](https://github.com/najimhaq/word-window)
+- Email: mdnajimulhaque@gmail.com
 
 ---
 
